@@ -12,7 +12,7 @@
 	  -- Web Browser
 	  -- API KEY
 	  
-#Steps to set up and run
+# Steps to set up and run
   
   ## Install MySQL database
   ```

@@ -11,9 +11,13 @@
 	  -- Web Browser
 	  -- API KEY
 	  
-  --** Steps to set up and run
-  ## Install MySQL database
+#Steps to set up and run
   
+  ## Install MySQL database
+  ```
+     1. Create database
+	 2. UserName and Password
+  ```
   ## Generate API KEY
   
    **  https://api.openweathermap.org/

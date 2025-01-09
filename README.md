@@ -1,7 +1,7 @@
 # WeatherReportAPI
 
 # Spring boot Application to fetch current Weather report 
-  --**System requirements
+  **  System requirements
 
       -- Java 1.8
 	  -- Srping boot 2.7.18
@@ -17,14 +17,13 @@
   ## Install MySQL database
   ```
      1. Create database
-	 2. UserName and Password
+	 2. Set UserName and Password in application.properties
   ```
   ## Generate API KEY
   
    **  https://api.openweathermap.org/
   
   ## Checkout repository
-  
   ``` 
        open bash command and run the command
 	   git clone https://github.com/dasari1979/DisplayCurrentWeatherReport.git
@@ -85,7 +84,7 @@
 		- After clicking "Send," Postman will display the list of posts from the JSONPlaceholder API.
 					 
 	 ```
-	      *** Login the User
+	      *** User Login
      ```
 		### Steps to Send a Request in Postman:
 
@@ -119,8 +118,8 @@
 		   - Postman will show the response status(200) and headers once the request completes.
 		   - Token will be generated
 		
-		8. **Token Generate**:
-           - In Response body copy token.
+		8. **Generate Token**:
+           - Copy token from Response body.
 		   
 		### Example:
 		- URL: `http://localhost:8000/app/auth/login`
@@ -131,7 +130,7 @@
   
   ## Step 4: Insert data into database
   
-       *** Register the User
+       *** User Registration
      ```
 		### Steps to Send a Request in Postman:
 
@@ -150,21 +149,27 @@
 		   - Next to the URL field, there is a dropdown menu to select the HTTP method (e.g., GET, POST, PUT, DELETE).
 		   - Choose the appropriate method for the request, please choose POST.
 
-		5. **Select Body tabs below the URL field.**:
+		5. **Authorization**:
+		   - Select the Authorization tab.
+		   - Choose Bearer Token from the dropdown.
+		   - Enter the token in the Token field.
+		   - Postman will add the Authorization: Bearer <token> header to your request.
+		   
+		6. **Select Body tabs below the URL field.**:
 		   - Select **raw** radio button and add data below format
 			{
 				"postalCode": "123456",
 				"user": "max"
             }
 
-		6. **Send the Request**:
+		7. **Send the Request**:
 		   - Once everything is set up, click the **"Send"** button on the right side of the request bar.
 		   - Postman will make the request and display the response in the lower section of the interface.
 
-		7. **View Response**:
+		8. **View Response**:
 		   - Postman will show the response status(201) and headers once the request completes.
+		   - Data will be stored in the Database
 		
-		8. **Data Inserted**:
 
 		### Example:
 		- URL: `http://localhost:8000/app/weather`
@@ -190,4 +195,3 @@
 	   2. Browse the project directory
 	   3. Click Finish
   ```
-	 

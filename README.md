@@ -35,7 +35,7 @@
 	   1. Press Windows + R, type cmd, and press Enter.
 	   2. Navigate to the Application Directory
        3. Run maven command
-           mvn clean install
+          mvn clean install
 	   4. Run jar
           java -jar target\weatherreport-0.0.1-SNAPSHOT.jar
   ```

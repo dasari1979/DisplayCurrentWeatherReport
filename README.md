@@ -181,7 +181,7 @@
      ```
 	    1. **Open Your Web Browser**: 
 		2. **Navigate to the Weather URL:**:		
-		In the browser’s address bar, type the following URL, replacing Postalcode or user with the code and Max.
+		In the browser’s address bar, type the following URL, replacing Postalcode or User with values.
 	      
      ```	 
 	   ***  http://localhost:8000/app/history?postalcode=560100

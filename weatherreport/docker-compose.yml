@@ -1,11 +1,9 @@
 version: '3.7'
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  application:
+      image: WeatherReportAPI
     ports:
-      - 8090:8090
+      - 8000:8000
     depends_on:
       mysqldb:
         condition: service_healthy
@@ -26,11 +24,6 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - springboot-mysql-network
-    healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-      retries: 10
-      interval: 3s
-      timeout: 30s
 volumes:
   mysql-data:
 networks:

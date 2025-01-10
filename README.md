@@ -44,9 +44,18 @@
   ## Step 3: Authentication and Autherization
   
      *** User Registration
-     ```
-		### Steps to Send a Request in Postman:
+	 
+	    ### Using curl:
+		
+	 ```
+	     curl -X POST \
+		  http://localhost:8000/app/auth/register \
+		  -H 'content-type: application/json' \
+		  -d '{"username":"Test", "password": "Test"}'
+	 ```
 
+		### Steps to Send a Request in Postman:
+     ```
 		1. **Open Postman**:
 		   - Launch the Postman application.
 
@@ -85,9 +94,16 @@
 					 
 	 ```
 	      *** User Login
-     ```
+		  
+		### Using curl:
+	 ```
+		  curl -X POST \
+		  http://localhost:8000/app/auth/login \
+		  -H 'content-type: application/json' \
+		  -d '{"username":"Test", "password": "Test"}'
+	 ```
 		### Steps to Send a Request in Postman:
-
+     ```
 		1. **Open Postman**:
 		   - Launch the Postman application.
 
@@ -130,10 +146,18 @@
   
   ## Step 4: Insert data into database
   
-       *** User Registration
-     ```
+       *** Store Weather Data
+	   
+		### Using curl:
+	 ```
+		  curl -X POST \
+		  http://localhost:8000/app/weather \
+		  -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzc3MiLCJ1c2VybmFtZSI6InNzcyIsImV4cCI6MTczNjU0Njk4NX0.qnNqD4JouMgwGX4tLQrR6qWHRFxqElvlg-Ib1cTT80A' \
+		  -H 'content-type: application/json' \
+		  -d '{"postalCode":"123456", "user": "max"}'
+	 ```	 
 		### Steps to Send a Request in Postman:
-
+     ```
 		1. **Open Postman**:
 		   - Launch the Postman application.
 
@@ -178,6 +202,18 @@
 					 
 	 ``` 
   ## Step 5: Test the Application  
+  
+  		### Using curl:
+	 ```
+		  curl -X GET \
+		  http://localhost:8000/app/history?postalcode=123456 \
+		  -H 'content-type: application/json' \
+		  
+		  OR
+		  curl -X GET \
+		  http://localhost:8000/app/history??user=Max \
+		  -H 'content-type: application/json' \
+	 ```	
      ```
 	    1. **Open Your Web Browser**: 
 		2. **Navigate to the Weather URL:**:		
@@ -189,7 +225,7 @@
 	   
   ## Step 6: Review the project code
   
-      *** Import the proejct into eclipse or IntelliJ
+      *** Import proejct into eclipse or IntelliJ
   ```
        1. File->Import->Existing Maven Project
 	   2. Browse the project directory

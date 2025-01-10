@@ -5,7 +5,7 @@
 
       -- Java 1.8
 	  -- Srping boot 2.7.18
-	  -- Maven 3.3.8(EMBEDDED)
+	  -- Maven 3.3.8
 	  -- Eclipse Oxygen Release (4.7.0) or IntelliJ
 	  -- MySQL
 	  -- Postman
@@ -27,7 +27,7 @@
   
   ## Checkout repository
   ``` 
-       open bash command and run the command
+       open bash and run the command
 	   git clone https://github.com/dasari1979/DisplayCurrentWeatherReport.git
 	   cd weatherreport
   ```

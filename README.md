@@ -20,8 +20,10 @@
 	 2. Set UserName and Password in application.properties
   ```
   ## Generate API KEY
-  
-   **  https://api.openweathermap.org/
+  ```
+     Generate from below url
+  ```
+   ***  https://api.openweathermap.org/
   
   ## Checkout repository
   ``` 
@@ -30,7 +32,7 @@
 	   cd weatherreport
   ```
 
-  ## Step 1: command prompt
+  ## Step 1: Command prompt
   ```	 
 	   1. Press Windows + R, type cmd, and press Enter.
 	   2. Navigate to the Application Directory

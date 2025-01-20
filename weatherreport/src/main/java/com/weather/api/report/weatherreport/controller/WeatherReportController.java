@@ -41,12 +41,12 @@ public class WeatherReportController {
 	private WeatherReportService weatherReportService;
 	
 	/**
-	 * This method is called when a POST request is made
-	 * URL: http://localhost:9090/app/weather
-     * Purpose: save an WeatherReport entity
+	 * This method is called when a GET request is made
+	 * URL: http://localhost:8000/app/postalcode
+     * Purpose: Fetch an WeatherReport details
      * @param postalCode - Request body is an WeatherReport entity
 	 * @param user - - Request body is an WeatherReport entity
-     * @return Saved WeatherReport entity
+     * @return fetch WeatherReport entity
 	 * @throws ResourceNotFoundException 
 	 */
 	@GetMapping("/history/data")

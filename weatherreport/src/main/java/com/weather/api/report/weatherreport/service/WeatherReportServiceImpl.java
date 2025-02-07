@@ -53,10 +53,10 @@ public class WeatherReportServiceImpl implements WeatherReportService{
 	}
 
 	@Override
-	public WeatherReport saveWeatherData(WeatherReport weatherReport) throws JSONException, IOException, WeatherAPIKeyNotFoundException, WeatherNotFoundException, InvalidAPIKeyException, ResourceNotFoundException, PostalCodeNotFoundException   {
+	public WeatherReport saveWeatherData(WeatherReport weatherReport,String jsonFile) throws JSONException, IOException, WeatherAPIKeyNotFoundException, WeatherNotFoundException, InvalidAPIKeyException, ResourceNotFoundException, PostalCodeNotFoundException   {
 
 			String pinCode = String.valueOf(weatherReport.getPostalCode());
-			String countryCode = findCountryCode(pinCode);
+			String countryCode = findCountryCode(jsonFile);
 			String jsonString = getWeatherDataCity(pinCode, countryCode);
 			
 			if(jsonString.isEmpty())
@@ -95,13 +95,13 @@ public class WeatherReportServiceImpl implements WeatherReportService{
 
 
 	@Override
-	public String findCountryCode(String postalCode) throws IOException, JSONException, ResourceNotFoundException, PostalCodeNotFoundException {
-		return jsonParsePostalCode(postalCode);
+	public String findCountryCode(String postalCodeJson) throws IOException, JSONException, ResourceNotFoundException, PostalCodeNotFoundException {
+		return jsonParsePostalCode(postalCodeJson);
 	}
 
-	private String jsonParsePostalCode(String postalCode) throws IOException, JSONException, ResourceNotFoundException, PostalCodeNotFoundException {
+	private String jsonParsePostalCode(String postalCodeJson) throws IOException, JSONException, ResourceNotFoundException, PostalCodeNotFoundException {
 		 CountryCodes codes = new CountryCodes();
-		 String cuntryName = codes.getCountyName(postalCode);
+		 String cuntryName = codes.getCountyName(postalCodeJson);
 		return codes.getCountryCode(cuntryName);
 	}
 

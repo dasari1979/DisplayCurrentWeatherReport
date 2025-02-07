@@ -38,6 +38,7 @@ import com.weather.api.report.weatherreport.exceptions.PostalCodeNotFoundExcepti
 import com.weather.api.report.weatherreport.exceptions.ResourceNotFoundException;
 import com.weather.api.report.weatherreport.exceptions.WeatherAPIKeyNotFoundException;
 import com.weather.api.report.weatherreport.exceptions.WeatherNotFoundException;
+import com.weather.api.report.weatherreport.feign.client.CountryNames;
 import com.weather.api.report.weatherreport.gentoken.GenerateToken;
 import com.weather.api.report.weatherreport.repository.UserRepository;
 import com.weather.api.report.weatherreport.repository.WeatherReportRepository;
@@ -68,6 +69,9 @@ public class WeatherreportApplicationTests {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	CountryNames countryNames;
 
 	private String uniqueUid = UUID.randomUUID().toString();
 
@@ -128,7 +132,8 @@ public class WeatherreportApplicationTests {
 		weatherReport.setUser("Max");
 		weatherReport.setWeather("Clouds");
 		weatherReport.setWeatherDesc("Clear sky");
-		weatherReportService.saveWeatherData(weatherReport);
+		String weatherReportJson = countryNames.getCountyName(weatherReport.getPostalCode());
+		weatherReportService.saveWeatherData(weatherReport, weatherReportJson);
 		logger.info(" Saved...");
 
 		// Checking

@@ -2,9 +2,6 @@ package com.weather.api.report.weatherreport.countrycodes;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -31,29 +28,16 @@ public class CountryCodes {
 
 	}
 	
-	public String getCountyName(String zipCode) throws JSONException, IOException, ResourceNotFoundException, PostalCodeNotFoundException {
+	public String getCountyName(String postalCodeJson) throws JSONException, IOException, ResourceNotFoundException, PostalCodeNotFoundException {
         String cuntryName = "";
         BufferedReader br = null;
         JSONObject jsonValue = null;
         try {
-		// Creating an object of URL class
-        URL url = new URL("https://api.postalpincode.in/pincode/"+zipCode);
-        // communicate between application and URL
-        URLConnection urlconnect = url.openConnection();
-        // for our application streams to be read
-        br = new BufferedReader(new InputStreamReader(urlconnect.getInputStream()));
-        // Declaring an integer variable
-        String readAPIResponse = "";
-        StringBuilder builder = new StringBuilder();
-        // Till the time URL is being read
-        while ((readAPIResponse = br.readLine()) != null) {
-        	builder.append(readAPIResponse);
-        }
-        JSONArray jsonArray = new JSONArray(builder.toString().trim());
+        JSONArray jsonArray = new JSONArray(postalCodeJson.trim());
         for (int i =0;i<jsonArray.length();i++) {
         	jsonValue = jsonArray.getJSONObject(i);
         	if(jsonArray.getJSONObject(i).isNull(UserDefinedVariables.POSTOFFICE))
-            throw new PostalCodeNotFoundException("OR Not able to find PostOffice Name for "+zipCode);
+            throw new PostalCodeNotFoundException("OR Not able to find PostOffice Name");
         	
         	JSONArray jsonObj = jsonArray.getJSONObject(i).getJSONArray(UserDefinedVariables.POSTOFFICE);	
         	if(jsonObj.getJSONObject(i) instanceof JSONObject) {
@@ -63,14 +47,11 @@ public class CountryCodes {
 	        	break;
               }
          }
-        }catch (IOException e) {
-			if(br == null)
-				throw new ResourceNotFoundException("Not able fetch data for "+zipCode);
-		}finally {
+        }finally {
 			if(br != null)
 				br.close();
         	if(jsonValue == null || jsonValue.isNull(UserDefinedVariables.POSTOFFICE))
-                throw new PostalCodeNotFoundException("OR Not able to find PostOffice Name for "+zipCode);
+                throw new PostalCodeNotFoundException("OR Not able to find PostOffice");
 		}
 
 

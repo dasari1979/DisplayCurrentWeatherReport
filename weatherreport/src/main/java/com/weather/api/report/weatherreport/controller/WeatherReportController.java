@@ -26,6 +26,7 @@ import com.weather.api.report.weatherreport.exceptions.PostalCodeNotFoundExcepti
 import com.weather.api.report.weatherreport.exceptions.ResourceNotFoundException;
 import com.weather.api.report.weatherreport.exceptions.WeatherAPIKeyNotFoundException;
 import com.weather.api.report.weatherreport.exceptions.WeatherNotFoundException;
+import com.weather.api.report.weatherreport.feign.client.CountryNames;
 import com.weather.api.report.weatherreport.service.WeatherReportService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,9 @@ public class WeatherReportController {
 	
 	@Autowired
 	private WeatherReportService weatherReportService;
+	
+	@Autowired
+	CountryNames countryNames;
 	
 	/**
 	 * This method is called when a GET request is made
@@ -99,7 +103,8 @@ public class WeatherReportController {
 	@PostMapping("/weather")
 	public ResponseEntity<WeatherReport> saveWeatherData(@RequestBody @Valid WeatherReport weatherReport) throws WeatherNotFoundException, JSONException, IOException, WeatherAPIKeyNotFoundException, InvalidAPIKeyException, ResourceNotFoundException, PostalCodeNotFoundException{
 		    logger.info("Inserting weather data...");
-		    WeatherReport report = weatherReportService.saveWeatherData(weatherReport);
+		    String weatherReportJson = countryNames.getCountyName(weatherReport.getPostalCode());
+		    WeatherReport report = weatherReportService.saveWeatherData(weatherReport,weatherReportJson);
 		    if(report.getTemperature()!=0)
 			return ResponseEntity.ok().body(report);
 		    else
